@@ -1,0 +1,21 @@
+<ul class="menu">
+<li class="current"><a href="/">Home</a></li>
+<li><a href=""><i class="fa fa-random"></i> Chains</a>
+	<ul>
+        {% for i in list_of_chains %}
+		<li><a href="/chain?chain={{ i }}"><i class="fa fa-link"></i> {{ i }}</a></li>
+	    {% endfor %}
+		<li class="divider"><a href="/create_chain"><i class="fa fa-plus"></i> Add Chain</a></li>
+	</ul>
+</li>
+<li><a href="/help">Help</a></li>
+
+<li><a href=""><i class="fa fa-cogs"></i> Control</a>
+	<ul>
+	<li><a href="/export"><i class="fa fa-download"></i> Export Config</a></li>
+	<li><a href=""><i class="fa fa-play"></i> Start iptables</a></li>
+	<li><a href=""><i class="fa fa-repeat"></i> Restart </a></li>
+	<li><a href=""><i class="fa fa-stop"></i> Stot iptables</a></li>
+	</ul>
+</li>
+</ul>

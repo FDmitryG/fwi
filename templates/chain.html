@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<!-- Head tag -->
+{% include 'head.html' %}
+
+<body>
+<div class="grid">
+
+	<!-- Menu Horizontal -->
+	{% include 'menu.html' %}
+
+	<div class="col_12">
+		<h4>{{ chain_name }}</h4>
+		<!-- Table -->
+		<table cellspacing="0" cellpadding="0" class="sortable">
+		<thead><tr>
+			<th>pkts</th>
+			<th>bytes</th>
+			<th>target</th>
+			<th>prot</th>
+			<th>opt</th>
+			<th>in</th>
+			<th>out</th>
+			<th>source</th>
+			<th>destination</th>
+			<th>state</th>
+			<th>action</th>
+		</tr></thead>
+		<tbody>
+		{% for i in row %}
+		<tr>
+			<td>{{ i[1] }}</td>
+			<td>{{ i[2] }}</td>
+			<td>{{ i[3] }}</td>
+			<td>{{ i[4] }}</td>
+			<td>{{ i[5] }}</td>
+			<td>{{ i[6] }}</td>
+			<td>{{ i[7] }}</td>
+			<td>{{ i[8] }}</td>
+			<td>{{ i[9] }}</td>
+			<td>{{ i[10] }}</td>
+			<!--<td><i class="fa fa-wrench"></i> <i class="fa fa-trash"></i> </td>-->
+			<td>
+				<ul class="button-bar">
+				<!--<li><a href=""><i class="fa fa-wrench"></i></a></li>-->
+				<li><a href="/delete_rule?chain={{ chain }}&rul_number={{ i[0] }}"><i class="fa fa-trash"></i></li>
+				</ul>
+			</td>
+
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+
+		<h4>Добавить правило</h4>
+		<form name="add_rule" id="add_rule" action="/add_rule" method="POST">
+			<!-- rule-specification -->
+			<select form="add_rule" name="new_rule_rs" id="select_rs">
+				<option value="A"> A </option>
+				<option value="P"> P </option>
+			</select>
+			<!-- Protocol -->
+			<select form="add_rule" name="new_rule_prot" id="select_proto">
+				<option value="tcp">-- Protocol --</option>
+				<option value="all">all</option>
+				<option value="tcp">tcp</option>
+				<option value="udp">udp</option>
+				<option value="icmp">icmp</option>
+			</select>
+			<!-- Destination Port -->
+			<input name="new_rule_dport" id="new_rule_dport" type="text" placeholder="Destination Port" />
+			<!-- Address -->
+			<input name="new_rule_address" id="new_rule_addres" type="text" value="10.1.1.1" placeholder="Address/Mask" />
+			<!-- Action -->
+			<select form="add_rule" name="new_rule_action" id="select_jump">
+				<option value="ACCEPT">-- Jump --</option>
+				<option value="ACCEPT">ACCEPT</option>
+				<option value="DROP">DROP</option>
+				<option value="QUEUE">QUEUE</option>
+				<option value="RETURN">RETURN</option>
+			</select>
+
+			<!-- Hidden Input Chain name-->
+			<input name="chain" id="chain" type="hidden" value="{{ chain }}" />
+
+			<button type="submit" class="small blue">Добавить</button>
+		</form>
+	</div>
+</div> <!-- End Grid -->
+</body>
+</html>

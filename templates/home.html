@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Head tag -->
+{% include 'head.html' %}
+
+<body>
+<div class="grid">
+
+	<!-- Menu Horizontal -->
+	{% include 'menu.html' %}
+
+	<div class="col_6">
+		<h4>Список цепочек правил</h4>
+		<!-- Unordered List -->
+		<ul>
+		{% for c in list_of_chains %}
+		<li>{{ c }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+
+	<div class="col_6">
+		<h4>Добавить Цепочку правил</h4>
+		<form name="create_chain" id="create_chain" action="/create_chain" method="POST">
+			<input name="new_chain_name" id="new_chain_name" type="text" placeholder="New Chain Name" />
+			<button type="submit" class="small blue">Создать</button>
+		</form>
+
+		<h4>Удалить Цепочку правил</h4>
+		<form name="delete_chain" id="delete_chain" action="/delete_chain" method="POST">
+			<input name="del_chain_name" id="del_chain_name" type="text" placeholder="Chain Name" />
+			<button type="submit" class="small red">Удалить</button>
+		</form>
+	</div>
+</div> <!-- End Grid -->
+</body>
+</html>

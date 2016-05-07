@@ -1,0 +1,6 @@
+INPUT 
+1 0 0 ACCEPT tcp -- any any 10.1.1.1 anywhere tcp dpt:333 
+2 0 0 DROP all -- any any 1.2.3.4 anywhere 
+3 0 0 ACCEPT icmp -- any any anywhere anywhere icmp echo-request 
+OUTPUT 
+1 0 0 DROP tcp -- any any 10.1.1.1 anywhere tcp dpt:ntp 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link shortener</title>
+
+    <style>
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Link shortener</h1>
+
+    {% if error %}
+    <h3 class="error">{{ error }}</h3>
+    {% endif %}
+
+    {% if success %}
+    <h3 class="success">{{ success }}</h3>
+    {% endif %}
+
+    <form action="/" method="POST">
+        <div>
+            <label for="url">URL: </label>
+            <input type="url" name="url" id="url">
+        </div>
+
+        <div>
+            <label for="alias">Alias:</label>
+            <input type="text" name="alias" id="alias">
+        </div>
+
+        <div>
+            <input type="submit" value="OK">
+        </div>
+    </form>
+</body>
+</html>
